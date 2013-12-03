@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>SpinEdit Example page &middot; Lexey111</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Lexey111">
+
+    <!-- CSS -->
+    <link href="css/le-examples.css" rel="stylesheet">
+    <link href="./css/lxspinedit.css" rel="stylesheet">
+</head>
+<body>
+<div id="wrapper">
+<div id="demo-pane">
+<h1>lxSpinEdit example page</h1>
+
+<p class="powered">
+    Powered by <a href="http://jquery.com/" target="_blank">
+    <img width="16" height="16" title="jQuery" alt="jQuery"
+         src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABmJLR0QA/wD/AP+gvaeTAAACbElEQVQ4jbWRS0hUcRTGv/v0zr33f2d0NGvKsoxSUQi1SNsFClLmKoIeEkRGhNGDVi26bqxlRYgQ2qIi0LBm0UuGgiikh0RYVCo4OjLO21Hnced5W821TAmCvtXhO///j/OdA/w3qSpt1Ee69qz2jF7RbW/n+CnpMACguSOPbLBd/jvgkLrbqIO2fXx+QRkAQLbqprXFDWWDn6tWBxxUK3mitOZMId9cw1ktOwAAA2qStyjXKUV+Uv0tWrsUsZ83ADTDnuMJyeZ6nLUgzBPSWPLgjQ0AZo43dLJmpY+WhZfln/zv199/OyT4vMcMAGcm9awsbcwBTIUWByuJIsMrt9CvM6Ao/fvOos5sdrE05Qucjk/6T2jdHb3GNPLF3rHCa/ZZqK/YnLfx3oe7Zc/H9Ip33scVzui6P8KrdwQAYAGAIdIEYzI1lxTntbmAPgBIm6lTgiiU0pLQynKmxqrx6MNEIDSScHmpyKSrMjbhGtAABw0AvCg/Y0wCKI69utk+WgwA7pa6GBFL9rKScEVPZ+YyMa0tsxC7kQjPX0gGQkPa7bMOAKAAoODmU0UklglWFosYRRoV8s1NX3et8Rjj6jq9/fXUpoR7Vnf+eDENVTUWTi1lHtnPmk12hkg0SyQnS4STo9tkx0q3J12D1tT0FNF6zjupXxtbh8aPMkTqY4nIMUQCaGo4o2n21GLkY8YfCceDflvKE2yKuT1bovJMK1Q1TS2nl4/4azlF6qFFoS6bTCIdiSMdXkAyGIbmC0Bz+x7N+0Jt6D4T+S3CclXPpOqzi4kD6UikJjU3TyW8wS9xT3AgdKlleLU//6SfJkzj1hK4050AAAAASUVORK5CYII="/>
+    jQuery
+</a>
+    <br/>
+    &copy; 2013, <a href="http://lexey111.com">Lexey111</a>
+</p>
+
+<p>
+    Here you can see live examples and detailed descriptions of lxSpinEdit project by Lexey111 (<a
+        href="http://lexey111.blogspot.com/2013/11/spinedit.html" target="_blank">blog article</a>).
+</p>
+
+
+<h2>Examples</h2>
+
+<div id="selectors_container1"></div>
+
+<div class="clearfix"></div>
+
+<h2>Key features</h2>
+<ul>
+    <li>Integers and floats are supported, both positive and negative.</li>
+    <li>Keyboard navigation (use Ctrl+&uparrow; &downarrow; when input is focused).</li>
+    <li>Step x10 (use Shift key while clicking plus and minus).</li>
+    <li>Mousewheel support upon either input and slider.</li>
+    <li>Trackbar slider control.</li>
+    <li>Automatic range check and error indication.</li>
+    <li>Two kind of progress bar: fullsized and embedded.</li>
+    <li>Clear and useful API.</li>
+    <li>LESS style file with all the constants isolated &mdash; easy to customize.</li>
+</ul>
+
+<h2>Require</h2>
+
+<ul>
+    <li>
+        <a href="http://jquery.com/" target="_blank">jQuery 1.8+</a>
+    </li>
+</ul>
+
+<h2>Valid for (i.e. tested in)</h2>
+<ul>
+    <li>Chrome (webkit) 24+</li>
+    <li>Opera 12.15+</li>
+    <li>Firefox 20+</li>
+    <li>IE 10+</li>
+    <li>Safari 5+</li>
+</ul>
+
+<h2>How to use</h2>
+
+<p>
+    LxSpinEdit is a runtime-creation kind of UI controls. This mean that you have to make new Javascript
+    object to use it.
+</p>
+
+<p>
+    First step is prepare container for item(s) in html-file. Next, you need to call constructor explicitly to
+    make and embed selector into prepared place.
+</p>
+
+<p>
+    Usual way to do this is something like (in the <b class="js-code">documentReady<span>()</span></b> function
+    or later):
+</p>
+
+<p class="example-header">Usage example</p>
+<pre style="color:#fff">
+    <span style="color:#ffee80">var</span> cntr_opacity <span style="color:#ff9d00">=</span> <span
+        style="color:#ff9d00">new</span> <span style="color:#fd0">LxSpinEdit</span>({
+        container: item_container,
+        id: <span style="color:#3ad900">'</span>cntr_opacity<span style="color:#3ad900">'</span>,
+        title: <span style="color:#3ad900">'</span>Opacity<span style="color:#3ad900">'</span>,
+        fixed: <span style="color:#ff628c">true</span>,
+        slider: <span style="color:#ff628c">true</span>,
+        always_use_wheel: <span style="color:#ff628c">true</span>,
+        min: <span style="color:#ff628c">1</span>,
+        max: <span style="color:#ff628c">100</span>,
+        step: <span style="color:#ff628c">1</span>,
+        value: <span style="color:#ff628c">100</span>,
+        measure: <span style="color:#3ad900">'</span>%<span style="color:#3ad900">'</span>,
+        percent_bar: <span style="color:#ff628c">true</span>,
+        callback_change: onDataChanged,
+        callback_focus: showInitialProperties
+    })<span style="color:#e1efff">;</span>
+</pre>
+<h2>Properties list</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Property</th>
+            <th>Optional</th>
+            <th>Type</th>
+            <th>What does it mean</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>id</td>
+            <td>No</td>
+            <td>string</td>
+            <td>Unique control ID.</td>
+        </tr>
+        <tr>
+            <td>container</td>
+            <td>No</td>
+            <td>string|object</td>
+            <td>jQuery selector (jQuery object or text) of parent container for button.</td>
+        </tr>
+        <tr>
+            <td>title</td>
+            <td>Yes</td>
+            <td>string</td>
+            <td>Label before the control.</td>
+        </tr>
+        <tr>
+            <td>hide_title</td>
+            <td>Yes</td>
+            <td>boolean</td>
+            <td>Hide title or not, default: <b>false</b></td>
+        </tr>
+        <tr>
+            <td>enabled</td>
+            <td>Yes</td>
+            <td>boolean</td>
+            <td>Is control enabled or is it read-only, default: <b>true</b></td>
+        </tr>
+        <tr>
+            <td>min</td>
+            <td>No</td>
+            <td>integer|float</td>
+            <td>
+                Minimum value. <b>Min</b> and <b>max</b> could be optional, i.e. "0", but only if <b>slider</b>
+                is set to false.
+            </td>
+        </tr>
+        <tr>
+            <td>max</td>
+            <td>No</td>
+            <td>integer|float</td>
+            <td>Maximum value.</td>
+        </tr>
+        <tr>
+            <td>value</td>
+            <td>No</td>
+            <td>integer|float</td>
+            <td>Current value.</td>
+        </tr>
+        <tr>
+            <td>fixed</td>
+            <td>Yes</td>
+            <td>boolean</td>
+            <td>Use integers (<b>true</b>) or floats (<b>false</b>). Default: <b>false</b></td>
+        </tr>
+        <tr>
+            <td>point_pos</td>
+            <td>Yes</td>
+            <td>integer</td>
+            <td>
+                Precision, i.e. number of digits after decimal point if <b>fixed</b> is <b>false</b>. Default:
+                <b>1</b>
+            </td>
+        </tr>
+        <tr>
+            <td>step</td>
+            <td>No</td>
+            <td>integer|float</td>
+            <td>
+                Value that will be added/subtracted from current on plus/minus button clicking.
+            </td>
+        </tr>
+        <tr>
+            <td>measure</td>
+            <td>Yes</td>
+            <td>string</td>
+            <td>
+                Measurement units, text after the control.
+            </td>
+        </tr>
+        <tr>
+            <td>always_use_wheel</td>
+            <td>Yes</td>
+            <td>boolean</td>
+            <td>
+                When true, mouse wheel will interacts with control always (otherwise - only if control is focused).
+                Default: <b>false</b>
+            </td>
+        </tr>
+        <tr>
+            <td>slider</td>
+            <td>Yes</td>
+            <td>boolean</td>
+            <td>
+                Use or not dropdown slider (trackbar).
+                Default: <b>false</b>
+            </td>
+        </tr>
+        <tr>
+            <td>live_slider</td>
+            <td>Yes</td>
+            <td>boolean</td>
+            <td>
+                Call the callback function every time while dragging slider handle (or only when drag ends).
+                Default: <b>false</b>
+            </td>
+        </tr>
+        <tr>
+            <td>clear_after</td>
+            <td>Yes</td>
+            <td>boolean</td>
+            <td>
+                Add "clearfix" div after control so next control will starts from new line.
+                Default: <b>false</b>
+            </td>
+        </tr>
+        <tr>
+            <td>percent_bar</td>
+            <td>Yes</td>
+            <td>boolean</td>
+            <td>
+                Use or not percentage bar (inside control).
+                Default: <b>false</b>
+            </td>
+        </tr>
+        <tr>
+            <td>percent_full_size</td>
+            <td>Yes</td>
+            <td>boolean</td>
+            <td>
+                Use all the control background as percentage bar, otherwise &mdash; use ony thin bar at the bottom.
+                Default: <b>false</b>
+            </td>
+        </tr>
+        <tr>
+            <td>hide_buttons</td>
+            <td>Yes</td>
+            <td>boolean</td>
+            <td>
+                Hide plus and minus buttons while control has no focus.
+                Default: <b>false</b>
+            </td>
+        </tr>
+        <tr>
+            <td>callback_change</td>
+            <td>Yes</td>
+            <td>function</td>
+            <td>
+                onChange event callback. Function get control as <b>this</b> object and current value as parameter.
+            </td>
+        </tr>
+        <tr>
+            <td>callback_focus</td>
+            <td>Yes</td>
+            <td>function</td>
+            <td>
+                onFocus event callback. Function get control as <b>this</b> object.
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<h2>Change callback</h2>
+
+<p class="example-header">Usage example:</p>
+<pre style="color: #fff">
+  <span style="color:#ffee80">function</span> <span style="color:#fd0">onDataChanged</span>(value) {
+    <span style="color:#08f;font-style:italic"><span
+            style="color:#e1efff">//</span> do nothing, append to console</span>
+    <span style="color:#08f;font-style:italic"><span style="color:#e1efff">//</span> LxSpinEdit control is passed here as 'this' parameter</span>
+    pseudo_console<span style="color:#ffb054">.log</span>(<span style="color:#ff80e1">this</span>.<span
+        style="color:#eb939a">id</span>, value, <span style="color:#ff80e1">this</span>.properties.measure)<span
+        style="color:#e1efff">;</span>
+  }
+</pre>
+
+<p>Please take it into account: <b>value</b> is current value in the control while <b>this.properties.value</b> is <i>initial</i>
+   value.</p>
+
+<h2>Public methods</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Method</th>
+            <th>Parameters</th>
+            <th>What does it mean</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>isControlDisabled()</td>
+            <td>&mdash;</td>
+            <td>
+                Is control disabled or not?
+            </td>
+        </tr>
+
+        <tr>
+            <td>disable()</td>
+            <td>&mdash;</td>
+            <td>Disables control.</td>
+        </tr>
+        <tr>
+            <td>enable()</td>
+            <td>&mdash;</td>
+            <td>Enables control.</td>
+        </tr>
+        <tr>
+            <td>show()</td>
+            <td>&mdash;</td>
+            <td>Shows control.</td>
+        </tr>
+        <tr>
+            <td>hide()</td>
+            <td>&mdash;</td>
+            <td>Hides control.</td>
+        </tr>
+        <tr>
+            <td>getMin(), <br/>getMax(), <br/>getValue()</td>
+            <td>&mdash;</td>
+            <td>Returns appropriate values.</td>
+        </tr>
+        <tr>
+            <td>getTitle(), <br/>getMeasurement()</td>
+            <td>&mdash;</td>
+            <td>Returns appropriate texts.</td>
+        </tr>
+        <tr>
+            <td>setMin(value), <br/>setMax(value), <br/>setValue(value)</td>
+            <td>integer|float</td>
+            <td>Sets appropriate values.</td>
+        </tr>
+        <tr>
+            <td>setTitle(), <br/>setMeasurement()</td>
+            <td>string</td>
+            <td>Sets appropriate texts.</td>
+        </tr>
+        <tr>
+            <td>increase(delta), <br/>decrease(delta)</td>
+            <td>integer|float <br/>optional</td>
+            <td>
+                Internal, but useful functions to increase/decrease current value. If no <b>delta</b> is passed,
+                <b>properties.step</b> will be used.
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<h2>Styles</h2>
+
+<p>
+    Styles are defined in <b class="filename">lxspinedit<span>.less</span></b> file, where you can tune colors
+    and sizes
+    for all parts of the control.
+</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Property</th>
+            <th>Default value</th>
+            <th>What does it mean</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="subheader" colspan="3">
+                Sizes
+            </td>
+        </tr>
+
+        <tr>
+            <td>input_height</td>
+            <td>26px</td>
+            <td>Input and whole control height</td>
+        </tr>
+        <tr>
+            <td>input_width</td>
+            <td>50px</td>
+            <td>Input width</td>
+        </tr>
+        <tr>
+            <td>title_width</td>
+            <td>70px</td>
+            <td>Width of text before input</td>
+        </tr>
+        <tr>
+            <td>button_width</td>
+            <td>18px</td>
+            <td>Width of each button (plus and minus)</td>
+        </tr>
+        <tr>
+            <td>full_width</td>
+            <td>200px</td>
+            <td>Width of whole control</td>
+        </tr>
+        <tr>
+            <td>bottom_gap</td>
+            <td>2px</td>
+            <td>Margin at the bottom</td>
+        </tr>
+        <tr>
+            <td>slider_trackbar_height</td>
+            <td>4px</td>
+            <td>Height of trackbar (slider carrier)</td>
+        </tr>
+        <tr>
+            <td>slider_height</td>
+            <td>60px</td>
+            <td>Slider dropdown height</td>
+        </tr>
+        <tr>
+            <td>slider_width</td>
+            <td>164px</td>
+            <td>Slider dropdown width</td>
+        </tr>
+        <tr>
+            <td>slider_handle_height</td>
+            <td>20px</td>
+            <td>Slider handle height</td>
+        </tr>
+        <tr>
+            <td>slider_handle_width</td>
+            <td>11px</td>
+            <td>Slider handle width</td>
+        </tr>
+        <tr>
+            <td class="subheader" colspan="3">
+                Transition
+            </td>
+        </tr>
+        <tr>
+            <td>transition_duration</td>
+            <td>0.4s</td>
+            <td>Duration of effects</td>
+        </tr>
+        <tr>
+            <td class="subheader" colspan="3">
+                Border colors
+            </td>
+        </tr>
+        <tr>
+            <td>border_normal</td>
+            <td><span class="color_example" style="background-color: #ddd"></span>#dddddd</td>
+            <td>Border color</td>
+        </tr>
+        <tr>
+            <td>border_focused</td>
+            <td><span class="color_example" style="background-color: #faa732"></span>#faa732</td>
+            <td>Border color in focused state</td>
+        </tr>
+        <tr>
+            <td>border_disabled</td>
+            <td><span class="color_example" style="background-color: #d7d7d7"></span>#d7d7d7</td>
+            <td>Border color in disabled state</td>
+        </tr>
+        <tr>
+            <td>border_disabled_focused</td>
+            <td><span class="color_example" style="background-color: #777"></span>#777777</td>
+            <td>Border color in disabled and focused state</td>
+        </tr>
+        <tr>
+            <td class="subheader" colspan="3">
+                Input colors
+            </td>
+        </tr>
+        <tr>
+            <td>input_bg_normal</td>
+            <td><span class="color_example" style="background-color: #fcfcfc"></span>#fcfcfc</td>
+            <td>Input background</td>
+        </tr>
+        <tr>
+            <td>input_bg_focused</td>
+            <td><span class="color_example" style="background-color: #fff"></span>#ffffff</td>
+            <td>Input background in focused state</td>
+        </tr>
+        <tr>
+            <td>input_bg_disabled</td>
+            <td><span class="color_example" style="background-color: #fafafa"></span>#fafafa</td>
+            <td>Input background in disabled state</td>
+        </tr>
+        <tr>
+            <td class="subheader" colspan="3">
+                Text colors
+            </td>
+        </tr>
+        <tr>
+            <td>measurement_units_color</td>
+            <td><span class="color_example" style="background-color: #ccc"></span>#cccccc</td>
+            <td>Color of meausrement units text</td>
+        </tr>
+        <tr>
+            <td>title_color</td>
+            <td><span class="color_example" style="background-color: #656f75"></span>#656f75</td>
+            <td>Color of title text</td>
+        </tr>
+        <tr>
+            <td>title_focused_color</td>
+            <td><span class="color_example" style="background-color: #000"></span>#000000</td>
+            <td>Color of title text when focused</td>
+        </tr>
+        <tr>
+            <td>title_disabled_color</td>
+            <td><span class="color_example" style="background-color: #ccc"></span>#cccccc</td>
+            <td>Color of title text when control is disabled</td>
+        </tr>
+        <tr>
+            <td class="subheader" colspan="3">
+                Progressbar colors
+            </td>
+        </tr>
+        <tr>
+            <td>percentage_bg_color</td>
+            <td><span class="color_example" style="background-color: #ccd"></span>#ccccdd</td>
+            <td>Progressbar background color</td>
+        </tr>
+        <tr>
+            <td>percentage_fg_color</td>
+            <td><span class="color_example" style="background-color: #6aa1f3"></span>#6aa1f3</td>
+            <td>Progressbar foreground (fill) color</td>
+        </tr>
+        <tr>
+            <td>percentage_fullsize_fg_color</td>
+            <td><span class="color_example" style="background-color: #b5dcf3"></span>#b5dcf3</td>
+            <td>Progressbar foreground (fill) color when <b>percent_full_size: true</b></td>
+        </tr>
+        <tr>
+            <td>percentage_disabled_color</td>
+            <td><span class="color_example" style="background-color: #aaa"></span>#aaaaaa</td>
+            <td>Progressbar foreground (fill) color in disabled state</td>
+        </tr>
+        <tr>
+            <td>percentage_disabled_fullsize_fg_color</td>
+            <td><span class="color_example" style="background-color: #aaa"></span>#aaaaaa</td>
+            <td>Progressbar foreground (fill) color in disabled state when <b>percent_full_size: true</b></td>
+        </tr>
+    </tbody>
+</table>
+
+<p>Enjoy!</p>
+
+<p class="download">
+    You can download all the source code from <a href="https://github.com/lexey111/lxSpinEdit">Github</a>.
+</p>
+
+<p class="wbr">
+    With Best Regards
+    <br>
+    <i>Lexey</i><b>111</b>
+</p>
+
+<div class="clearfix"></div>
+</div>
+<div id="control-pane">
+    <div id="pseudo-console"></div>
+    <div id="cntr-properties">
+        <h3>Initial properties</h3>
+
+        <div id="cntr-properties-list"></div>
+    </div>
+</div>
+</div>
+
+<div id="right-bg-pane"></div>
+<div id="left-bg-pane"></div>
+
+<script src="js/jquery-2.0.3.min.js"></script>
+<script src="js/lxSpinEdit.js"></script>
+<script src="js/le-examples.js"></script>
+</body>
+</html>
